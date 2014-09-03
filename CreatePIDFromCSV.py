@@ -17,7 +17,7 @@ pd.set_option('display.max_columns', 60)
 # PIDSERVICE_URL="THE_SERVICE_URL_WITH_PREFIX"
 PIDSERVICE_URL="https://epic.grnet.gr/api/v2/handles/11239/"
 PIDSERVICE_USER="aphrc-demo"
-PIDSERVICE_PASSWD="660a42555399fd67aea9feb0545ef5cd68f5d214"
+PIDSERVICE_PASSWD=""
 #now, create the connection to the API
 # create a password manager
 password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
