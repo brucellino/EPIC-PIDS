@@ -17,7 +17,7 @@ pd.set_option('display.max_columns', 60)
 # PIDSERVICE_URL="THE_SERVICE_URL_WITH_PREFIX"
 PIDSERVICE_URL="https://epic.grnet.gr/api/v2/handles/11239/"
 PIDSERVICE_USER="aphrc-demo"
-PIDSERVICE_PASSWD=""
+PIDSERVICE_PASSWD="660a42555399fd67aea9feb0545ef5cd68f5d214"
 #now, create the connection to the API
 # create a password manager
 password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
@@ -37,14 +37,30 @@ DATAURL=''
 REPO_URL='http://aphrc.org/catalog/microdata/index.php/catalog/'
 # first we open the CSV file with the list of the data sets
 
-df = pd.read_csv("search-09-01-14-062754.csv")
+#df = pd.read_csv("search-09-01-14-062754.csv")
+df = pd.read_csv("http://aphrc.org/catalog/microdata/index.php/catalog/export/csv?ps=1000")
 
 # Start the loop over data sets
 for row in df.itertuples():
-	dataCollection=str(row[2])
-	SUFFIX ="?prefix=APHRC&suffix="+str(row[2]) # this will be updated in the "suffix" section for each dataset
+	dataCollectionName=str(row[2])
+	dataCollectionNumber=str(row[1])
+	SUFFIX ="?prefix=11239&suffix="+dataCollectionName # this will be updated in the "suffix" section for each dataset
 	URL_TO_OPEN=PIDSERVICE_URL+SUFFIX
-	URL=REPO_URL+dataCollection
+	URL=REPO_URL+dataCollectionNumber
+	URL_TO_OPEN=PIDSERVICE_URL+"?URL=*"+dataCollectionName
+	REQUESTDATA = urllib2.Request(URL_TO_OPEN)
+	try:
+		DATAURL = urllib2.urlopen(REQUESTDATA)
+	except urllib2.URLError, e:
+		if e.code == 404:
+			print "404-Not found"
+		if e.code == 401:
+			print "401-Authentication failed"    
+
+	if DATAURL:
+		print "PID is already there"
+	else # continue
+
 	print URL
 	# create the data in json
 	JSONDATA=[{'type':'URL','parsed_data':URL}]
@@ -56,7 +72,7 @@ for row in df.itertuples():
 	#create the headers
 	REQUESTDATA.add_header('Content-Type','application/json')
 	REQUESTDATA.add_header('Content-Length',len(JSONDATATOSEND))
-
+	
 	# creates the POST method
 	REQUESTDATA.get_method = lambda: 'POST'
 
@@ -91,21 +107,21 @@ except urllib2.URLError, e:
         print "401-Authentication failed"    
 
 # Deleting 
-if DATAURL:
-    # Getting the code
-    print "This gets the code: ", DATAURL.code
-    for pid in DATAURL.readlines():
-		print "trying ", pid
-		# check what URL is specified
-		REQUESTDATA = urllib2.Request(PIDSERVICE_URL+pid)
-		REQUESTDATA.get_method = lambda: 'DELETE' # works :)
-		try:
-			pidURL = urllib2.urlopen(REQUESTDATA)
-		except urllib2.URLError, e:
+#if DATAURL:
+    ## Getting the code
+    #print "This gets the code: ", DATAURL.code
+    #for pid in DATAURL.readlines():
+		#print "trying ", pid
+		## check what URL is specified
+		#REQUESTDATA = urllib2.Request(PIDSERVICE_URL+pid)
+		#REQUESTDATA.get_method = lambda: 'DELETE' # works :)
+		#try:
+			#pidURL = urllib2.urlopen(REQUESTDATA)
+		#except urllib2.URLError, e:
 		
-			if e.code == 404:
-				print "404-Not found"
-			if e.code == 401:
-				print "401-Authentication failed"  
-			if pidURL:
-				print pidURL.read_lines()
+			#if e.code == 404:
+				#print "404-Not found"
+			#if e.code == 401:
+				#print "401-Authentication failed"  
+			#if pidURL:
+				#print pidURL.read_lines()
