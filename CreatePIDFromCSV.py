@@ -97,21 +97,21 @@ except urllib2.URLError, e:
         print "401-Authentication failed"    
 
 # Deleting 
-if DATAURL:
-    # Getting the code
-    print "This gets the code: ", DATAURL.code
-    for pid in DATAURL.readlines():
-		print "deleting ", pid
-		# check what URL is specified
-		REQUESTDATA = urllib2.Request(PIDSERVICE_URL+pid)
-		REQUESTDATA.get_method = lambda: 'DELETE' # works :)
-		try:
-			pidURL = urllib2.urlopen(REQUESTDATA)
-		except urllib2.URLError, e:
+#if DATAURL:
+    ## Getting the code
+    #print "This gets the code: ", DATAURL.code
+    #for pid in DATAURL.readlines():
+		#print "deleting ", pid
+		## check what URL is specified
+		#REQUESTDATA = urllib2.Request(PIDSERVICE_URL+pid)
+		#REQUESTDATA.get_method = lambda: 'DELETE' # works :)
+		#try:
+			#pidURL = urllib2.urlopen(REQUESTDATA)
+		#except urllib2.URLError, e:
 		
-			if e.code == 404:
-				print "404-Not found"
-			if e.code == 401:
-				print "401-Authentication failed"  
-			if pidURL:
-				print pidURL.read_lines()
+			#if e.code == 404:
+				#print "404-Not found"
+			#if e.code == 401:
+				#print "401-Authentication failed"  
+			#if pidURL:
+				#print pidURL.read_lines()
