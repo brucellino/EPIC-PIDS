@@ -1,5 +1,6 @@
 EPIC-PIDS
 =========
+[![DOI](https://zenodo.org/badge/1514/brucellino/EPIC-PIDS.png)](http://dx.doi.org/10.5281/zenodo.11613)
 
 This repository contains demonstrator usage of the [EPIC](http://epic.grnet.gr/) Persistent Identifier (PID) [API](http://epic.grnet.gr/guides/api/).
 
@@ -23,3 +24,6 @@ A CSV file describing the APHRC data sets, in their NADA [microdata portal](aphr
   2. the `dataCollectionName` is used to construct the [suffix](http://epic.grnet.gr/guides/glossary/)
 
 that's it really :)
+
+# Citing this work
+Please use the [![DOI](https://zenodo.org/badge/1514/brucellino/EPIC-PIDS.png)](http://dx.doi.org/10.5281/zenodo.11613) to refer to this work when citing it.
