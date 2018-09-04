@@ -1,15 +1,15 @@
-EPIC-PIDS
-=========
-[![DOI](https://zenodo.org/badge/1514/brucellino/EPIC-PIDS.png)](http://dx.doi.org/10.5281/zenodo.11613)
+# EPIC-PIDS
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11613.svg)](https://doi.org/10.5281/zenodo.11613)
 
 This repository contains demonstrator usage of the [EPIC](http://epic.grnet.gr/) Persistent Identifier (PID) [API](http://epic.grnet.gr/guides/api/).
 
-# What it does.
+## What it does.
 
 This is a very simple, demonstrative python script which uses python [pandas](pandas.pydata.org) to extract a list of data sets from a CSV file, interrogate the API, and assign them handles. Handles are assigned to the URL of the data set, using the data set description as provided by the data catalogue as a suffix. 
 
 
-# APHRC Use Case
+## APHRC Use Case
 
 The main use case of this script is a demonstrator. The work was funded by the  [CHAIN-REDS](http://www.chain-project), to support the [African Population and Health Research Centre](http://www.aphrc.org) in Nairobi.
 
@@ -26,4 +26,5 @@ A CSV file describing the APHRC data sets, in their NADA [microdata portal](aphr
 that's it really :)
 
 # Citing this work
-Please use the [![DOI](https://zenodo.org/badge/1514/brucellino/EPIC-PIDS.png)](http://dx.doi.org/10.5281/zenodo.11613) to refer to this work when citing it.
+
+Please use the [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11613.svg)](https://doi.org/10.5281/zenodo.11613) to refer to this work when citing it.
